@@ -1,5 +1,5 @@
-#ifndef MONTY_H__
-#define MONTY_H__
+#ifndef MONTY_H
+#define MONTY_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,19 +8,18 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+
 #define STACK 0
 #define QUEUE 1
 #define DELIMS " \n\t\a\b"
 
 /* GLOBAL OPCODE TOKENS */
 extern char **op_toks;
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
  * @prev: points to the previous element of the stack (or queue)
  * @next: points to the next element of the stack (or queue)
- *
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO Holberton project
  */
