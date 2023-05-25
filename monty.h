@@ -1,14 +1,12 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <ctype.h>
-
+#include <string.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,64 +37,68 @@ typedef struct instruction_s
     void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+#define INSTRUCTIONS\
+    {\
+            {"push", push},\
+            {"pall", pall},\
+            {"pint", pint},\
+            {"pop", pop},\
+            {"swap", swap},\
+            {"nop", nop},\
+            {"div", _div},\
+            {"mul", _mul},\
+            {"add", _add},\
+            {"sub", _sub},\
+            {"mod", mod},\
+            {"pchar", pchar},\
+            {"pstr", pstr},\
+            {"rotl", rotl},\
+            {"rotr", rotr},\
+        {\
+            NULL, NULL\
+        }\
+    }
 /**
- * struct globals - global structure to use in the functions
- * @lifo: is stack or queue
- * @cont: current line
- * @arg: second parameter inside the current line
- * @head: doubly linked list
- * @fd: file descriptor
- * @buffer: input text
+ * struct help - argument for the current opcode
+ * @data_struct: stack mode, stack (default) and queue
+ * @argument: the arguments of the string
  *
- * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO Holberton project
+ * Description: global structure used to pass data around the functions easily
  */
-typedef struct globals
+typedef struct help
 {
-    int lifo;
-    unsigned int cont;
-    char *arg;
-    stack_t *head;
-    FILE *fd;
-    char *buffer;
-} global_varia;
+    int data_struct;
+    char *argument;
+} help;
+help global;
 
-extern global_varia vglo;
+extern int status;
 
-void _push(stack_t **stack, unsigned int line_number);
-void _pall(stack_t **stack, unsigned int line_number);
-void _pint(stack_t **doubly, unsigned int cline);
-void _pop(stack_t **doubly, unsigned int cline);
-void _swap(stack_t **doubly, unsigned int cline);
-void _queue(stack_t **doubly, unsigned int cline);
-void _stack(stack_t **doubly, unsigned int cline);
-void _add(stack_t **doubly, unsigned int cline);
-void _nop(stack_t **doubly, unsigned int cline);
-void _sub(stack_t **doubly, unsigned int cline);
-void _div(stack_t **doubly, unsigned int cline);
-void _mul(stack_t **doubly, unsigned int cline);
-void _mod(stack_t **doubly, unsigned int cline);
-void _pchar(stack_t **doubly, unsigned int cline);
-void _pstr(stack_t **doubly, unsigned int cline);
-void _rotl(stack_t **doubly, unsigned int cline);
-void _rotr(stack_t **doubly, unsigned int cline);
+extern int status;
 
-/*get function*/
-void (*get_opcodes(char *opc))(stack_t **stack, unsigned int line_number);
-/*function_strings*/
-int _sch(char *s, char c);
-char *_strtoky(char *s, char *d);
-int _strcmp(char *s1, char *s2);
-/*functions_size*/
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void *_calloc(unsigned int nmemb, unsigned int size);
+void push(stack_t **stack, unsigned int line_cnt);
+void pall(stack_t **stack, unsigned int line_cnt);
+void pint(stack_t **stack, unsigned int line_cnt);
+void swap(stack_t **stack, unsigned int line_cnt);
+void pop(stack_t **stack, unsigned int line_cnt);
+void nop(stack_t **stack, unsigned int line_cnt);
+void _div(stack_t **stack, unsigned int line_cnt);
+void _add(stack_t **stack, unsigned int line_cnt);
+void _sub(stack_t **stack, unsigned int line_cnt);
+void _mul(stack_t **stack, unsigned int line_cnt);
+void mod(stack_t **stack, unsigned int line_cnt);
+void pchar(stack_t **stack, unsigned int line_cnt);
+void pstr(stack_t **stack, unsigned int line_cnt);
+void rotl(stack_t **stack, unsigned int line_count);
+void rotr(stack_t **stack, unsigned int line_count);
+void opcode(stack_t **stack, char *str, unsigned int line_cnt);
 
-/* double linked list functions */
-stack_t *add_dnodeint_end(stack_t **head, const int n);
-stack_t *add_dnodeint_beginning(stack_t **head, const int n);
-void free_dlistint(stack_t *head);
+int is_digit(char *string);
+int isnumber(char *str);
 
-/* main */
-void free_vglo(void);
+stack_t *add_node(stack_t **stack, const int n);
+stack_t *queue_node(stack_t **stack, const int n);
+void free_stack(stack_t *stack);
+size_t print_stack(const stack_t *stack);
 
 #endif /*MONTY_H*/
