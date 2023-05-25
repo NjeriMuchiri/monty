@@ -5,11 +5,11 @@ void monty_div(stack_t **stack, unsigned int line_number);
 void monty_mul(stack_t **stack, unsigned int line_number);
 void monty_mod(stack_t **stack, unsigned int line_number);
 /**
- * monty_add - Adds the top two values of a stack_t linked list.
- * @stack: A pointer to the top mode node of a stack_t linked list.
+ * monty_add - adds the top two values of a stack_t linked list
+ * @stack: pointer to the top mode node of a stack_t linked list
  * @line_number: The current working line number of a Monty bytecodes file.
- * Description: The result is stored in the second value node
- * from the top and the top value  is removed.
+ * Description: result stored in the second value node
+ * from the top and the top value is removed.
  */
 void monty_add(stack_t **stack, unsigned int line_number)
 {
@@ -22,11 +22,11 @@ return;
 monty_pop(stack, line_number);
 }
 /**
- * monty_sub - Subtracts the second value from the top of
- * a stack_t linked list by the top value.
- * @stack: A pointer to the top mode node of a stack_t linked list.
+ * monty_sub - subtracts the second value from the top of
+ * a stack_t linked list from the top value.
+ * @stack: pointer to the top mode node of a stack_t linked list.
  * @line_number: The current working line number of a Monty bytecodes file.
- * Description: The result is stored in the second value node
+ * Description: result stored in the second value node
  * from the top and the top value is removed.
  */
 void monty_sub(stack_t **stack, unsigned int line_number)
@@ -40,11 +40,11 @@ return;
 monty_pop(stack, line_number);
 }
 /**
- * monty_div - Divides the second value from the top of
- * a stack_t linked list by the top value.
- * @stack: A pointer to the top mode node of a stack_t linked list.
+ * monty_div - divides the second value from the top of
+ * a stack_t linked list by the top value
+ * @stack: pointer to the top mode node of a stack_t linked list.
  * @line_number: The current working line number of a Monty bytecodes file.
- * Description: The result is stored in the second value node
+ * Description: result stored in the second value node
  * from the top and the top value is removed.
  */
 void monty_div(stack_t **stack, unsigned int line_number)
@@ -63,11 +63,11 @@ return;
 monty_pop(stack, line_number);
 }
 /**
- * monty_mul - Multiplies the second value from the top of
- * a stack_t linked list by the top value.
+ * monty_mul - multiplies the second value from the top of
+ * a stack_t linked list with the top value.
  * @stack: A pointer to the top mode node of a stack_t linked list.
  * @line_number: The current working line number of a Monty bytecodes file.
- * Description: The result is stored in the second value node
+ * Description: result stored in the second value node
  * from the top and the top value is removed.
  */
 void monty_mul(stack_t **stack, unsigned int line_number)
@@ -85,7 +85,7 @@ monty_pop(stack, line_number);
  * top of a stack_t linked list  by the top value.
  * @stack: A pointer to the top mode node of a stack_t linked list.
  * @line_number: The current working line number of a Monty bytecodes file.
- * Description: The result is stored in the second value node
+ * Description: result stored in the second value node
  * from the top and the top value is removed.
  */
 void monty_mod(stack_t **stack, unsigned int line_number)

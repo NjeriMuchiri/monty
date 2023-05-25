@@ -6,7 +6,8 @@ void fill_numbase_buff(unsigned int num, unsigned int base, char *buff, int buff
 /**
  * get_int - gets a character pointer to new string containing int
  * @num: number to convert to string
- * Return: character pointer to newly created string. NULL if malloc fails.
+ * Return: character pointer to the newly created string
+ * NULL if malloc fails.
  */
 char *get_int(int num)
 {
@@ -17,8 +18,8 @@ char *ret;
 temp = _abs(num);
 length = get_numbase_len(temp, 10);
 if (num < 0 || num_l < 0)
-length++;             /* negative sign */
-ret = malloc(length + 1); /* create new string */
+length++;             
+ret = malloc(length + 1);
 if (!ret)
 return (NULL);
 fill_numbase_buff(temp, 10, ret, length);
@@ -41,7 +42,7 @@ return ((unsigned int)i);
  * get_numbase_len - gets length of buffer needed for an unsigned int
  * @num: number to get length needed for
  * @base: base of number representation used by buffer
- * Return: integer containing length of buffer needed (doesn't contain null bt)
+ * Return: integer containing length of buffer needed,doesn't contain null bt
  */
 int get_numbase_len(unsigned int num, unsigned int base)
 {
@@ -68,8 +69,8 @@ buff[buff_size] = '\0';
 while (i >= 0)
 {
 rem = num % base;
-if (rem > 9)            /* return lowercase ascii val representation */
-buff[i] = rem + 87; /* 10 will be a, 11 = b, ... */
+if (rem > 9)
+buff[i] = rem + 87;
 else
 buff[i] = rem + '0';
 num /= base;

@@ -7,20 +7,20 @@ int is_empty_line(char *line, char *delims);
 void (*get_op_func(char *opcode))(stack_t **, unsigned int);
 int run_monty(FILE *script_fd);
 /**
- * free_tokens - Frees the global op_toks array of strings.
+ * free_tokens - frees op_toks array of strings
  */
 void free_tokens(void)
 {
-size_t i = 0;
+size_t t = 0;
 if (op_toks == NULL)
 return;
-for (i = 0; op_toks[i]; i++)
-free(op_toks[i]);
+for (t = 0; op_toks[t]; t++)
+free(op_toks[t]);
 free(op_toks);
 }
 /**
- * token_arr_len - Gets the length of current op_toks.
- * Return: Length of current op_toks (as int).
+ * token_arr_len - gives the length of current op_toks
+ * Return: length of current int op_toks
  */
 unsigned int token_arr_len(void)
 {
@@ -30,31 +30,31 @@ toks_len++;
 return (toks_len);
 }
 /**
- * is_empty_line - Checks if a line read from getline only contains delimiters.
- * @line: A pointer to the line.
- * @delims: A string of delimiter characters.
- * Return: If the line only contains delimiters - 1.
- * Otherwise - 0.
+ * is_empty_line - checks if a line read from getline only has delimiters
+ * @line: pointer to the line
+ * @delims: string of delimiter characters
+ * Return: 1, if the line only contains delimiters
+ * Otherwise, 0.
  */
 int is_empty_line(char *line, char *delims)
 {
-int i, j;
-for (i = 0; line[i]; i++)
+int m, k;
+for (m = 0; line[m]; m++)
 {
-for (j = 0; delims[j]; j++)
+for (k = 0; delims[k]; k++)
 {
-if (line[i] == delims[j])
+if (line[m] == delims[k])
 break;
 }
-if (delims[j] == '\0')
+if (delims[k] == '\0')
 return (0);
 }
 return (1);
 }
 /**
- * get_op_func - Matches an opcode with its corresponding function.
- * @opcode: The opcode to match.
- * Return: A pointer to the corresponding function.
+ * get_op_func - matches an opcode with its equivalent function.
+ * @opcode: opcode to match.
+ * Return: Pointer to the corresponding function.
  */
 void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 {
@@ -86,8 +86,8 @@ return (op_funcs[i].f);
 return (NULL);
 }
 /**
- * run_monty - Primary function to execute a Monty bytecodes script.
- * @script_fd: File descriptor for an open Monty bytecodes script.
+ * run_monty - main function to execute a monty bytecodes script
+ * @script_fd: The file descriptor for an open monty bytecodes script
  * Return: EXIT_SUCCESS on success, respective error code on failure.
  */
 int run_monty(FILE *script_fd)
@@ -110,7 +110,7 @@ continue;
 free_stack(&stack);
 return (malloc_error());
 }
-else if (op_toks[0][0] == '#') /* comment line */
+else if (op_toks[0][0] == '#')
 {
 free_tokens();
 continue;
